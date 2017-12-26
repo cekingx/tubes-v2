@@ -14,8 +14,8 @@ typedef struct{
 
 motor arrmotor[30];
 
-void tb_motor();
 void tambah_motor();
+void tb_motor();
 void edit_motor();
 void hapus_motor();
 

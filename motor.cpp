@@ -28,8 +28,8 @@ void tambah_motor(){
 	cout << "Tahun Produksi  : " << temp.tahun << endl;
 	cout << "\nApakah data tersebut sudah benar ? [y/t] >"; cin.get(pilih);
 
-	if(pilih == 'y' || pilih == "Y"){
-		if(infile.fail("db_motor/db_motor.txt")){
+	if(pilih == 'y' || pilih == 'Y'){
+		if(infile.fail(infile.open("db_motor/db_motor.txt"))){
 			system("mkdir db_motor");
 		}
 		outfile.open("db_motor/db_motor.txt", ios::out | ios::app);
