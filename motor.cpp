@@ -1,63 +1,53 @@
-#include <iostream>
-#include <cstdlib>
-#include <cstdio>
-#include <string>
+#include "motor.h"
 
 using namespace std;
 
-typedef struct{
-	string nama;
-	string alamat;
-	int umur;
-}datadiri;
-
-void menuu();
-
 int main(){
-	system("cls");
-	char again;
-	int menu;
-
-	do{
-		cout<<"Menu : "<<endl;
-		cout<<"1. I/O"<<endl;
-		cout<<"2. Quit"<<endl;
-		cout<<"Pilih menu >"; cin >> menu;
-		switch(menu){
-			case 1:{
-				menuu();
-				getchar();
-				cout<<"Ingin mengulang ? [y/t] > "; cin >> again;
-				break;
-			}
-			case 2:{
-				again = 't';
-				getchar();
-				break;
-			}
-			default :{
-				cout<<"pilihan salah"<<endl;
-				cout<<"Ingin mengulang ? [y/t] > "; cin >> again;
-				break;
-			}
-		}
-
-	}while(again == 'y' || again == 'Y');
+	tambah_motor();
 
 	return 0;
 }
 
-void menuu(){
+void tambah_motor(){
+	char pilih;
+	motor temp;
 	system("cls");
-	datadiri orang;
+	ifstream infile;
+	ofstream outfile;
 
-	cout << "Input data diri anda" << endl;
-	cout << "Nama > "; cin >> orang.nama;
-	cout << "Alamat > "; cin >> orang.alamat;
-	cout << "Umur > "; cin >> orang.umur;
+	cout << "\n\nTambah Sepeda Motor : " << endl;
+	cout << "Nama Motor      > "; cin >> temp.nama;
+	cout << "Plat            > "; cin >> temp.plat;
+	cout << "Kapasitas Mesin > "; cin >> temp.cc;
+	cout << "Tahun Produksi  > "; cin >> temp.tahun;
 
-	cout << "Data diri anda adalah sebagai berikut : "<< endl;
-	cout << "Nama   : " << orang.nama << endl;
-	cout << "Alamat : " << orang.alamat << endl;
-	cout << "Umur   : " << orang.umur << endl;
+	cout << "\nReview Kendaraan :" << endl;
+	cout << "Nama Motor      : " << temp.nama << endl;
+	cout << "Plat            : " << temp.plat << endl;
+	cout << "Kapasitas Mesin : " << temp.cc << endl;
+	cout << "Tahun Produksi  : " << temp.tahun << endl;
+	cout << "\nApakah data tersebut sudah benar ? [y/t] >"; cin.get(pilih);
+
+	if(pilih == 'y' || pilih == "Y"){
+		if(infile.fail("db_motor/db_motor.txt")){
+			system("mkdir db_motor");
+		}
+		outfile.open("db_motor/db_motor.txt", ios::out | ios::app);
+
+		outfile << temp.nama << " " << temp.plat << " " << temp.cc << " " << temp.tahun << endl;
+		outfile.close();
+
+	}
+}
+
+void tb_motor(){
+
+}
+
+void edit_motor(){
+
+}
+
+void hapus_motor(){
+
 }
