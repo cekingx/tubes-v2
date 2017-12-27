@@ -4,10 +4,11 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <iomanip>
 
 typedef struct{
 	char nama[20];
-	char plat[11];
+	char plat[15];
 	int cc;
 	int tahun;
 }motor;

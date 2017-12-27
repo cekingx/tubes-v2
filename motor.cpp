@@ -3,18 +3,17 @@
 using namespace std;
 
 int main(){
-	tambah_motor();
+	tb_motor();
 
 	return 0;
 }
 
 void tambah_motor(){
 	char pilih;
-	bool check;
 	motor temp;
-	system("cls");
 	ifstream infile;
 	ofstream outfile;
+	system("cls");
 
 	cout << "\n\nTambah Sepeda Motor : " << endl;
 	cout << "Nama Motor      > "; cin >> temp.nama;
@@ -45,6 +44,30 @@ void tambah_motor(){
 }
 
 void tb_motor(){
+	system("cls");
+	int i,j;
+	ifstream infile;
+	ofstream outfile;
+
+	infile.open("db_motor/db_motor.txt", ios::in);
+	i=0;
+	while(!infile.eof()){
+		infile >> arrmotor[i].nama >> arrmotor[i].plat >> arrmotor[i].cc >> arrmotor[i].tahun;
+		i++; 
+	}
+	infile.close();
+
+	cout << "+---+----------------------+-----------------+-------+-------+" << endl;
+	cout << "| No|      Nama Motor      |       Plat      |  CC   | Tahun |" << endl;
+	cout << "+---+----------------------+-----------------+-------+-------+" << endl;
+	for(j=0;j<i-1;j++){
+		cout << "|"  << setw(3) << j+1;
+		cout << "| " << setw(20) << arrmotor[j].nama ;
+		cout << " | " << setw(15) << arrmotor[j].plat ;
+		cout << " | " << setw(5) << arrmotor[j].cc ;
+		cout << " | " << setw(5) << arrmotor[j].tahun << " |" << endl;
+	}
+	cout << "+---+----------------------+-----------------+-------+-------+" << endl;
 
 }
 
