@@ -10,6 +10,7 @@ int main(){
 
 void tambah_motor(){
 	char pilih;
+	bool check;
 	motor temp;
 	system("cls");
 	ifstream infile;
@@ -26,12 +27,15 @@ void tambah_motor(){
 	cout << "Plat            : " << temp.plat << endl;
 	cout << "Kapasitas Mesin : " << temp.cc << endl;
 	cout << "Tahun Produksi  : " << temp.tahun << endl;
-	cout << "\nApakah data tersebut sudah benar ? [y/t] >"; cin.get(pilih);
+	cout << "\nApakah data tersebut sudah benar ? [y/t] >"; cin >> pilih;
 
 	if(pilih == 'y' || pilih == 'Y'){
-		if(infile.fail(infile.open("db_motor/db_motor.txt"))){
+		infile.open("db_motor/db_motor.txt", ios::in);
+		if(infile.fail()){
 			system("mkdir db_motor");
 		}
+		infile.close();
+
 		outfile.open("db_motor/db_motor.txt", ios::out | ios::app);
 
 		outfile << temp.nama << " " << temp.plat << " " << temp.cc << " " << temp.tahun << endl;
