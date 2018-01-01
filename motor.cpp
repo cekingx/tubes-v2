@@ -2,11 +2,7 @@
 
 using namespace std;
 
-int main(){
-	hapus_motor();
-
-	return 0;
-}
+motor arrmotor[30];
 
 void tambah_motor(){
 	char pilih;
@@ -28,7 +24,7 @@ void tambah_motor(){
 	cout << "Tahun Produksi  : " << temp.tahun << endl;
 	cout << "\nApakah data tersebut sudah benar ? [y/t] >"; cin >> pilih;
 
-	if(pilih == 'y' || pilih == 'Y'){
+	if(pilih == 'y' || pilih == 'Y'){ //write dari variabel temp ke file db_motor.txt
 		infile.open("db_motor/db_motor.txt", ios::in);
 		if(infile.fail()){
 			system("mkdir db_motor");
@@ -47,13 +43,12 @@ void tb_motor(){
 	//system("cls");
 	int i,j;
 	ifstream infile;
-	ofstream outfile;
 
 	infile.open("db_motor/db_motor.txt", ios::in);
 	i=0;
 	while(!infile.eof()){
 		infile >> arrmotor[i].nama >> arrmotor[i].plat >> arrmotor[i].cc >> arrmotor[i].tahun;
-		i++; 
+		i++;
 	}
 	infile.close();
 
@@ -97,9 +92,9 @@ void edit_motor(){
 	if(yakin == 'y' || yakin == 'Y'){
 		infile.open("db_motor/db_motor.txt", ios::in);
 		i=0;
-		while(!infile.eof()){ //assign dari file ke array
+		while(!infile.eof()){ //read dari file db_motor.txt ke array arrmotor[]
 			infile >> arrmotor[i].nama >> arrmotor[i].plat >> arrmotor[i].cc >> arrmotor[i].tahun;
-			i++; 
+			i++;
 		}
 		infile.close();
 
@@ -108,7 +103,7 @@ void edit_motor(){
 		arrmotor[pilih-1].cc = temp.cc;
 		arrmotor[pilih-1].tahun = temp.tahun;
 
-		outfile.open("db_motor/db_motor.txt", ios::out | ios::trunc); //assign dari array ke file
+		outfile.open("db_motor/db_motor.txt", ios::out | ios::trunc); //write dari array arrmotor[] ke file db_motor.txt
 		for(j=0;j<i;j++){
 			outfile << arrmotor[j].nama << " " << arrmotor[j].plat << " " << arrmotor[j].cc << " " << arrmotor[j].tahun << endl;
 		}
@@ -130,7 +125,7 @@ void hapus_motor(){
 	cout << "\n\nPilih Motor Yang Akan Dihapus >"; cin >> hapus; //Nomer motor yang akan dihapus
 	infile.open("db_motor/db_motor.txt", ios::in);
 	i=0;
-	while(!infile.eof()){ //assign dari file ke array
+	while(!infile.eof()){ //read dari file motor.txt ke array arrmotor[]
 		infile >> arrmotor[i].nama >> arrmotor[i].plat >> arrmotor[i].cc >> arrmotor[i].tahun;
 		i++; 
 	}
@@ -151,7 +146,7 @@ void hapus_motor(){
 		}
 	}
 
-	outfile.open("db_motor/db_motor.txt", ios::out | ios::trunc); //assign dari array ke file
+	outfile.open("db_motor/db_motor.txt", ios::out | ios::trunc); //write dari array arrmotor[] ke file db_motor.txt
 	for(j=0;j<i-2;j++){
 		outfile << arrmotor[j].nama << " " << arrmotor[j].plat << " " << arrmotor[j].cc << " " << arrmotor[j].tahun << endl;
 	}

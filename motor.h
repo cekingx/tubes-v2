@@ -14,7 +14,6 @@ typedef struct{
 	int tahun;
 }motor;
 
-motor arrmotor[30];
 
 void tambah_motor();
 void tb_motor();
